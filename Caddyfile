@@ -1,0 +1,22 @@
+:80 {
+    root * /srv
+    encode zstd gzip
+
+    # Cache static assets aggressively
+    @static path_regexp \.(js|css|woff2?|ttf|otf|jpe?g|png|webp|gif|svg|ico|avif)$
+    header @static Cache-Control "public, max-age=31536000, immutable"
+
+    # HTML + default: no cache
+    header Cache-Control "public, max-age=0, must-revalidate"
+
+    # Security headers
+    header X-Content-Type-Options "nosniff"
+    header X-Frame-Options "SAMEORIGIN"
+    header Referrer-Policy "strict-origin-when-cross-origin"
+    header Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    header -Server
+
+    # Try static files, fall back to .html extension (Next.js trailing slash), then 404
+    try_files {path} {path}.html {path}/index.html /404.html
+    file_server
+}
