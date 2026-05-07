@@ -18,8 +18,7 @@ import {
     Users,
     Shield,
     Instagram,
-    Linkedin,
-    Twitter,
+    Youtube,
 } from 'lucide-react';
 
 const MAILTO = 'mailto:hola@growthbrick.tech?subject=Quiero%20ver%20una%20demo%20de%20GrowthBrick';
@@ -889,25 +888,22 @@ function Footer() {
                     </div>
                     <div className="flex items-center gap-3">
                         <a
-                            href="#"
+                            href="https://www.instagram.com/growthbrick"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             aria-label="Instagram"
                             className="p-2 rounded-md text-white/60 hover:text-white hover:bg-white/5"
                         >
                             <Instagram size={18} />
                         </a>
                         <a
-                            href="#"
-                            aria-label="LinkedIn"
+                            href="https://www.youtube.com/@GrowthBrick"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="YouTube"
                             className="p-2 rounded-md text-white/60 hover:text-white hover:bg-white/5"
                         >
-                            <Linkedin size={18} />
-                        </a>
-                        <a
-                            href="#"
-                            aria-label="Twitter"
-                            className="p-2 rounded-md text-white/60 hover:text-white hover:bg-white/5"
-                        >
-                            <Twitter size={18} />
+                            <Youtube size={18} />
                         </a>
                     </div>
                 </div>
