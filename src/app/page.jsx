@@ -235,55 +235,51 @@ function Hero() {
 
             <div className="hero-overlay" aria-hidden="true" />
 
-            <div className="absolute inset-0 flex flex-col justify-end pb-16 lg:pb-24">
+            <div className="absolute inset-0 flex flex-col justify-end lg:justify-center pb-16 lg:pb-0">
                 <div className="container-x w-full">
-                    <div className="grid lg:grid-cols-12 gap-8 items-end">
-                        <div className="lg:col-span-8">
-                            <h1
-                                className="hero-h1 text-white animate-blur-fade-up"
-                                style={{ animationDelay: '400ms' }}
-                            >
-                                Que la IA filtre.
-                                <br />
-                                Que tu equipo cierre.
-                            </h1>
-                            <p
-                                className="mt-6 max-w-xl text-white/80 text-lg md:text-xl leading-relaxed animate-blur-fade-up"
-                                style={{ animationDelay: '600ms' }}
-                            >
-                                Te instalamos un sistema completo: anuncios en Meta apuntados a tu
-                                comprador ideal, IA que filtra leads 24/7 y un CRM nativo donde tu
-                                equipo solo cierra. Sin portales. Sin curiosos. Sin leads basura.
-                            </p>
-                            <div
-                                className="mt-8 flex flex-wrap items-center gap-3 animate-blur-fade-up"
-                                style={{ animationDelay: '800ms' }}
-                            >
-                                <span
-                                    aria-disabled="true"
-                                    className="btn-inactive-dark px-8 py-3 inline-flex items-center gap-2.5 text-sm"
-                                >
-                                    <span className="pulse-dot" />
-                                    Próximamente abrimos más cupos
-                                </span>
-                                <a
-                                    href="#solucion"
-                                    className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
-                                >
-                                    Ver cómo funciona
-                                    <Play size={14} />
-                                </a>
-                            </div>
+                    <div className="max-w-4xl mx-auto lg:text-center">
+                        <div
+                            className="liquid-glass rounded-full px-5 py-2.5 text-xs md:text-sm font-medium animate-blur-fade-up inline-flex items-center gap-2.5 mb-7 lg:mb-9"
+                            style={{ animationDelay: '200ms' }}
+                        >
+                            <span className="pulse-dot" />
+                            Cupos completos · Próximamente abrimos más
                         </div>
 
-                        <div className="lg:col-span-4 lg:flex lg:justify-end">
-                            <div
-                                className="liquid-glass rounded-full px-5 py-2.5 text-xs md:text-sm font-medium animate-blur-fade-up inline-flex items-center gap-2.5"
-                                style={{ animationDelay: '1000ms' }}
+                        <h1
+                            className="hero-h1 text-white animate-blur-fade-up"
+                            style={{ animationDelay: '400ms' }}
+                        >
+                            Que la IA filtre.
+                            <br />
+                            Que tu equipo cierre.
+                        </h1>
+                        <p
+                            className="mt-6 max-w-xl lg:mx-auto text-white/80 text-lg md:text-xl leading-relaxed animate-blur-fade-up"
+                            style={{ animationDelay: '600ms' }}
+                        >
+                            Te instalamos un sistema completo: anuncios en Meta apuntados a tu
+                            comprador ideal, IA que filtra leads 24/7 y un CRM nativo donde tu
+                            equipo solo cierra. Sin portales. Sin curiosos. Sin leads basura.
+                        </p>
+                        <div
+                            className="mt-8 flex flex-wrap items-center gap-3 lg:justify-center animate-blur-fade-up"
+                            style={{ animationDelay: '800ms' }}
+                        >
+                            <span
+                                aria-disabled="true"
+                                className="btn-inactive-dark px-8 py-3 inline-flex items-center gap-2.5 text-sm"
                             >
                                 <span className="pulse-dot" />
-                                Cupos completos · Próximamente abrimos más
-                            </div>
+                                Próximamente abrimos más cupos
+                            </span>
+                            <a
+                                href="#solucion"
+                                className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
+                            >
+                                Ver cómo funciona
+                                <Play size={14} />
+                            </a>
                         </div>
                     </div>
                 </div>
