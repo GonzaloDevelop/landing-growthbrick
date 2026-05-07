@@ -1,28 +1,30 @@
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
-    variable: '--font-inter',
+    variable: '--font-space-grotesk',
     display: 'swap',
+    weight: ['300', '400', '500', '600', '700'],
 });
 
 export const metadata = {
     metadataBase: new URL('https://growthbrick.tech'),
     title: {
-        default: 'GrowthBrick — Agencia digital para inmobiliarias y desarrolladoras',
+        default: 'GrowthBrick — Meta Ads + IA + CRM para inmobiliarias',
         template: '%s | GrowthBrick',
     },
     description:
-        'Ayudamos a inmobiliarias y desarrolladoras a convertir más metros cuadrados con Meta Ads, WhatsApp centralizado y un CRM diseñado para real estate.',
+        'Captamos compradores reales con Meta Ads, los califica la IA 24/7 y tu equipo solo cierra. Sin depender de portales. Para inmobiliarias y desarrolladoras argentinas.',
     keywords: [
-        'agencia real estate',
-        'marketing inmobiliario',
-        'CRM inmobiliaria',
-        'CRM desarrolladora',
         'Meta Ads inmobiliaria',
-        'WhatsApp Business inmobiliaria',
-        'leads inmobiliarios',
+        'creativos inmobiliarios',
+        'audiencias real estate',
+        'CRM inmobiliario',
+        'IA inmobiliaria',
+        'calificación de leads',
+        'WhatsApp inmobiliaria',
+        'sin portales inmobiliarios',
         'GrowthBrick',
     ],
     authors: [{ name: 'GrowthBrick' }],
@@ -32,15 +34,13 @@ export const metadata = {
         locale: 'es_AR',
         url: 'https://growthbrick.tech',
         siteName: 'GrowthBrick',
-        title: 'GrowthBrick — Agencia digital para inmobiliarias y desarrolladoras',
-        description:
-            'Meta Ads, WhatsApp centralizado y CRM para operar más leads con menos fricción.',
+        title: 'GrowthBrick — Meta Ads + IA + CRM para inmobiliarias',
+        description: 'Captamos. La IA califica. Tu equipo cierra. Sin portales.',
     },
     twitter: {
         card: 'summary_large_image',
         title: 'GrowthBrick',
-        description:
-            'Agencia digital para inmobiliarias y desarrolladoras. Meta Ads, WhatsApp y CRM propio.',
+        description: 'Captamos. La IA califica. Tu equipo cierra. Sin portales.',
     },
     robots: {
         index: true,
@@ -55,7 +55,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="es-AR" className={inter.variable}>
+        <html lang="es-AR" className={spaceGrotesk.variable}>
             <body>{children}</body>
         </html>
     );

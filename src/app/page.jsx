@@ -1,110 +1,286 @@
-import { Button } from '@/components/ui/button';
-import { Logo } from '@/components/Logo';
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import {
     ArrowRight,
+    Play,
+    Menu,
+    X,
+    Webhook,
     MessageSquare,
-    Building2,
-    BarChart3,
-    Zap,
-    Users,
-    Target,
-    TrendingUp,
-    CheckCircle2,
-    Quote,
     Sparkles,
+    Route,
+    Kanban,
+    Target,
+    Home,
+    Palette,
+    Users,
+    Shield,
+    Instagram,
+    Linkedin,
+    Twitter,
 } from 'lucide-react';
 
 const MAILTO = 'mailto:hola@growthbrick.tech?subject=Quiero%20ver%20una%20demo%20de%20GrowthBrick';
 
 /* ─────────────────────────────────────────────
-   NAV
+   NAV — improved liquid glass
    ───────────────────────────────────────────── */
 
 function Nav() {
+    const [scrolled, setScrolled] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            const heroH = window.innerHeight - 60;
+            setScrolled(window.scrollY > heroH);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
     return (
-        <header className="sticky top-0 z-40 backdrop-blur-md bg-[var(--bg-base)]/80 border-b border-[var(--border-subtle)]">
-            <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-                <Logo />
-                <div className="hidden md:flex items-center gap-8 text-sm text-[var(--text-secondary)]">
-                    <a href="#servicios" className="hover:text-[var(--brand-700)] transition-colors">Servicios</a>
-                    <a href="#para-quien" className="hover:text-[var(--brand-700)] transition-colors">Para quién</a>
-                    <a href="#como-funciona" className="hover:text-[var(--brand-700)] transition-colors">Cómo funciona</a>
-                    <a href="#casos" className="hover:text-[var(--brand-700)] transition-colors">Casos</a>
+        <header
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-scrolled' : ''
+                }`}
+        >
+            <div className="container-x">
+                <div
+                    className="nav-glass mt-4 pl-3 pr-3 md:pl-5 md:pr-3 py-2 flex items-center justify-between animate-blur-fade-up"
+                    style={{ animationDelay: '0ms' }}
+                >
+                    <a
+                        href="#"
+                        className="nav-wordmark px-4 py-2 font-display text-lg flex items-center gap-2"
+                        style={{ fontWeight: 600, letterSpacing: '-0.02em' }}
+                    >
+                        <span className="nav-dot" aria-hidden="true" />
+                        GrowthBrick
+                    </a>
+
+                    <nav
+                        className="hidden lg:flex items-center gap-7 text-sm"
+                        aria-label="Navegación principal"
+                    >
+                        <a
+                            className="nav-link-muted animate-blur-fade-up"
+                            style={{ animationDelay: '120ms' }}
+                            href="#solucion"
+                        >
+                            Producto
+                        </a>
+                        <a
+                            className="nav-link-muted animate-blur-fade-up"
+                            style={{ animationDelay: '180ms' }}
+                            href="#funciones"
+                        >
+                            Funciones
+                        </a>
+                        <a
+                            className="nav-link-muted animate-blur-fade-up"
+                            style={{ animationDelay: '240ms' }}
+                            href="#testimonios"
+                        >
+                            Testimonios
+                        </a>
+                        <a
+                            className="nav-link-muted animate-blur-fade-up"
+                            style={{ animationDelay: '300ms' }}
+                            href="#construido"
+                        >
+                            Nosotros
+                        </a>
+                    </nav>
+
+                    <div className="flex items-center gap-2">
+                        <span
+                            aria-disabled="true"
+                            className="nav-inactive px-4 py-2 text-sm animate-blur-fade-up inline-flex items-center gap-2"
+                            style={{ animationDelay: '320ms' }}
+                        >
+                            <span className="pulse-dot" />
+                            Próximamente
+                        </span>
+                        <button
+                            onClick={() => setOpen((v) => !v)}
+                            className="nav-burger lg:hidden ml-1 p-2"
+                            aria-expanded={open}
+                            aria-controls="mobile-menu"
+                            aria-label="Menú"
+                        >
+                            {open ? <X size={20} /> : <Menu size={20} />}
+                        </button>
+                    </div>
                 </div>
-                <a href={MAILTO}>
-                    <Button size="sm" variant="primary">
-                        Hablemos <ArrowRight size={15} />
-                    </Button>
-                </a>
-            </nav>
+            </div>
+
+            {open && (
+                <div
+                    id="mobile-menu"
+                    className="lg:hidden bg-white border-b border-[var(--border-soft)]"
+                >
+                    <div className="container-x py-4 flex flex-col gap-3 text-sm">
+                        <a href="#solucion" className="py-2" onClick={() => setOpen(false)}>
+                            Producto
+                        </a>
+                        <a href="#funciones" className="py-2" onClick={() => setOpen(false)}>
+                            Funciones
+                        </a>
+                        <a href="#testimonios" className="py-2" onClick={() => setOpen(false)}>
+                            Testimonios
+                        </a>
+                        <a href="#construido" className="py-2" onClick={() => setOpen(false)}>
+                            Nosotros
+                        </a>
+                        <a href={MAILTO} className="py-2" onClick={() => setOpen(false)}>
+                            Contactanos
+                        </a>
+                    </div>
+                </div>
+            )}
         </header>
     );
 }
 
 /* ─────────────────────────────────────────────
-   HERO
+   HERO — video background
    ───────────────────────────────────────────── */
 
 function Hero() {
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        let dir = 1;
+        let rafId = null;
+
+        const reverseStep = () => {
+            if (dir !== -1) return;
+            const next = video.currentTime - 1 / 30;
+            if (next <= 0.05) {
+                dir = 1;
+                video.currentTime = 0;
+                video.play().catch(() => { });
+                return;
+            }
+            video.currentTime = next;
+            rafId = requestAnimationFrame(reverseStep);
+        };
+
+        const onEnded = () => {
+            try {
+                video.playbackRate = -1;
+                const p = video.play();
+                if (p && typeof p.then === 'function') {
+                    p.catch(() => {
+                        video.playbackRate = 1;
+                        video.pause();
+                        dir = -1;
+                        rafId = requestAnimationFrame(reverseStep);
+                    });
+                }
+            } catch {
+                video.playbackRate = 1;
+                video.pause();
+                dir = -1;
+                rafId = requestAnimationFrame(reverseStep);
+            }
+        };
+
+        const onPlay = () => {
+            if (video.playbackRate >= 0) dir = 1;
+        };
+
+        const onLoaded = () => {
+            video.play().catch(() => { });
+        };
+
+        video.addEventListener('loadedmetadata', onLoaded);
+        video.addEventListener('ended', onEnded);
+        video.addEventListener('play', onPlay);
+
+        return () => {
+            video.removeEventListener('loadedmetadata', onLoaded);
+            video.removeEventListener('ended', onEnded);
+            video.removeEventListener('play', onPlay);
+            if (rafId) cancelAnimationFrame(rafId);
+        };
+    }, []);
+
     return (
-        <section className="relative overflow-hidden brand-gradient">
-            <div className="absolute inset-0 noise-bg opacity-40" aria-hidden="true" />
-            <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] hero-blob" aria-hidden="true" />
+        <section
+            data-screen-label="01 Hero"
+            className="relative w-full"
+            style={{ height: '100vh', minHeight: 680, background: '#0A0A0A' }}
+        >
+            <video
+                ref={videoRef}
+                className="hero-video"
+                autoPlay
+                muted
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+            >
+                <source src="/transition_video.mp4" type="video/mp4" />
+            </video>
 
-            <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-32 text-center">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--brand-50)] border border-[var(--brand-200)] text-[var(--brand-800)] text-xs font-medium mb-8">
-                    <Sparkles size={13} className="text-[var(--brand-600)]" />
-                    Agencia digital especializada en real estate
-                </div>
+            <div className="hero-overlay" aria-hidden="true" />
 
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--text-primary)] max-w-4xl mx-auto mb-6">
-                    Convertí más{' '}
-                    <span className="relative inline-block">
-                        <span className="relative z-10">metros cuadrados</span>
-                        <svg className="absolute left-0 right-0 -bottom-2 w-full" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true">
-                            <path
-                                d="M3 8 C 80 2, 220 2, 297 7"
-                                stroke="var(--brand-500)"
-                                strokeWidth="4"
-                                fill="none"
-                                strokeLinecap="round"
-                            />
-                        </svg>
-                    </span>
-                    .
-                    <br />
-                    Con una operación que se mide sola.
-                </h1>
+            <div className="absolute inset-0 flex flex-col justify-end pb-16 lg:pb-24">
+                <div className="container-x w-full">
+                    <div className="grid lg:grid-cols-12 gap-8 items-end">
+                        <div className="lg:col-span-8">
+                            <h1
+                                className="hero-h1 text-white animate-blur-fade-up"
+                                style={{ animationDelay: '400ms' }}
+                            >
+                                Que la IA filtre.
+                                <br />
+                                Que tu equipo cierre.
+                            </h1>
+                            <p
+                                className="mt-6 max-w-xl text-white/80 text-base md:text-lg leading-relaxed animate-blur-fade-up"
+                                style={{ animationDelay: '600ms' }}
+                            >
+                                Te instalamos un sistema completo: anuncios en Meta apuntados a tu
+                                comprador ideal, IA que filtra leads 24/7 y un CRM nativo donde tu
+                                equipo solo cierra. Sin portales. Sin curiosos. Sin leads basura.
+                            </p>
+                            <div
+                                className="mt-8 flex flex-wrap items-center gap-3 animate-blur-fade-up"
+                                style={{ animationDelay: '800ms' }}
+                            >
+                                <span
+                                    aria-disabled="true"
+                                    className="btn-inactive-dark px-8 py-3 inline-flex items-center gap-2.5 text-sm"
+                                >
+                                    <span className="pulse-dot" />
+                                    Próximamente abrimos más cupos
+                                </span>
+                                <a
+                                    href="#solucion"
+                                    className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
+                                >
+                                    Ver cómo funciona
+                                    <Play size={14} />
+                                </a>
+                            </div>
+                        </div>
 
-                <p className="mt-8 text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
-                    Meta Ads, WhatsApp centralizado y un CRM hecho para inmobiliarias y desarrolladoras. Tu equipo responde más rápido, vos ves los números en tiempo real.
-                </p>
-
-                <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
-                    <a href={MAILTO}>
-                        <Button size="lg" variant="primary">
-                            Agendá una demo <ArrowRight size={18} />
-                        </Button>
-                    </a>
-                    <a href="#servicios">
-                        <Button size="lg" variant="secondary">
-                            Ver qué hacemos
-                        </Button>
-                    </a>
-                </div>
-
-                <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm text-[var(--text-muted)]">
-                    <div className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-[var(--brand-600)]" />
-                        Setup completo en 14 días
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-[var(--brand-600)]" />
-                        WhatsApp oficial con YCloud
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <CheckCircle2 size={16} className="text-[var(--brand-600)]" />
-                        Sin contratos largos
+                        <div className="lg:col-span-4 lg:flex lg:justify-end">
+                            <div
+                                className="liquid-glass rounded-full px-5 py-2.5 text-xs md:text-sm font-medium animate-blur-fade-up inline-flex items-center gap-2.5"
+                                style={{ animationDelay: '1000ms' }}
+                            >
+                                <span className="pulse-dot" />
+                                Cupos completos · Próximamente abrimos más
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,62 +289,97 @@ function Hero() {
 }
 
 /* ─────────────────────────────────────────────
-   SERVICIOS — lo que resolvemos
+   PROBLEMA
    ───────────────────────────────────────────── */
 
-const SERVICES = [
+function Problema() {
+    return (
+        <section
+            data-screen-label="02 Problema"
+            className="section-pad bg-[var(--bg-light)]"
+        >
+            <div className="container-x">
+                <div className="reveal">
+                    <div className="eyebrow mb-8">El problema</div>
+                    <p className="editorial-p max-w-4xl">
+                        Pagás <span style={{ color: 'var(--brand-600)' }}>portales</span> que
+                        venden tus contactos a la competencia. Tus agentes pierden el{' '}
+                        <span style={{ color: 'var(--brand-600)' }}>70%</span> del día con
+                        curiosos, consultas sin presupuesto y formularios que nunca van a cerrar.
+                        Y los compradores reales — los pocos que sí están listos — se van con
+                        quien los atiende primero.
+                    </p>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ─────────────────────────────────────────────
+   SOLUCIÓN
+   ───────────────────────────────────────────── */
+
+const STEPS = [
     {
-        icon: Target,
-        title: 'Captación de leads con Meta Ads',
-        body: 'Armamos, optimizamos y medimos tus campañas en Facebook e Instagram. Creativos pensados para propiedades reales, audiencias que convierten y atribución real de cada venta al anuncio que la originó.',
-        bullets: ['Audiencias y creativos a medida', 'Atribución por anuncio y propiedad', 'Conversion Leads API integrada'],
+        num: '01',
+        title: 'Captamos al comprador real con Meta Ads',
+        body: 'Diseñamos creativos y audiencias por barrio, ticket y perfil. Apuntamos cada propiedad al comprador exacto que la busca en Facebook e Instagram — sin pagar portales que reciclan tus contactos.',
     },
     {
-        icon: MessageSquare,
-        title: 'WhatsApp Business centralizado',
-        body: 'Toda la conversación pasa por un inbox compartido. El agente responde desde su celular o la web, el dueño ve todo. Templates aprobados para reactivar leads fuera de las 24 h.',
-        bullets: ['Inbox unificado para todo el equipo', 'Templates y automatizaciones', 'Tiempos de respuesta medidos'],
+        num: '02',
+        title: 'La IA califica antes de que tu equipo conteste',
+        body: 'Cada lead pasa primero por la IA: detecta intención, presupuesto y timing. Descarta automáticamente a quien no tiene capacidad real de compra, y solo deriva al agente los leads listos para visitar.',
     },
     {
-        icon: BarChart3,
-        title: 'CRM diseñado para real estate',
-        body: 'Pipeline pensado para el ciclo inmobiliario, no un CRM genérico adaptado. Propiedades, visitas, deals y tareas en un solo lugar, con paneles que el dueño mira todos los días.',
-        bullets: ['Pipeline configurable por cliente', 'Agentes con KPIs claros', 'Informes de agencia para dueños'],
+        num: '03',
+        title: 'Tu equipo cierra. Vos ves los números.',
+        body: 'Los agentes ven leads pre-calificados con score y propiedad de interés. Vos ves qué creativo trae más cierres, qué audiencia convierte y cuánto cuesta cada venta — todo en tiempo real.',
     },
 ];
 
-function Servicios() {
+function Solucion() {
     return (
-        <section id="servicios" className="relative py-28">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <span className="text-xs font-semibold tracking-widest text-[var(--brand-700)] uppercase">
-                        Servicios
-                    </span>
-                    <h2 className="mt-3 text-4xl md:text-5xl text-[var(--text-primary)]">
-                        Tres piezas conectadas entre sí
+        <section
+            data-screen-label="03 Solución"
+            id="solucion"
+            className="section-pad bg-[var(--bg-light)] border-t border-[var(--border-soft)]"
+        >
+            <div className="container-x">
+                <div className="reveal max-w-4xl">
+                    <div className="eyebrow mb-6">Cómo funciona</div>
+                    <h2 className="section-title">
+                        De Meta Ads al cierre, en una sola operación.
                     </h2>
-                    <p className="mt-4 text-lg text-[var(--text-secondary)]">
-                        Anuncios, conversaciones y gestión operando como un solo sistema. Sin planillas sueltas, sin agentes que responden desde su propio WhatsApp.
-                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                    {SERVICES.map((s) => (
-                        <article key={s.title} className="card-surface p-7">
-                            <div className="w-11 h-11 rounded-xl bg-[var(--brand-50)] border border-[var(--brand-100)] flex items-center justify-center mb-5">
-                                <s.icon size={20} className="text-[var(--brand-700)]" />
+                <div className="mt-16 grid md:grid-cols-3 gap-10 lg:gap-12">
+                    {STEPS.map((s, i) => (
+                        <article
+                            key={s.num}
+                            className="reveal"
+                            style={{ animationDelay: `${60 + i * 80}ms` }}
+                        >
+                            <div className="step-card">
+                                <div
+                                    className="font-display text-base"
+                                    style={{ fontWeight: 500, color: 'var(--accent)' }}
+                                >
+                                    {s.num}
+                                </div>
+                                <h3
+                                    className="mt-6 font-display text-2xl"
+                                    style={{
+                                        fontWeight: 400,
+                                        letterSpacing: '-0.02em',
+                                        lineHeight: 1.15,
+                                    }}
+                                >
+                                    {s.title}
+                                </h3>
+                                <p className="mt-3 text-[var(--ink-muted)] text-[15px] leading-relaxed">
+                                    {s.body}
+                                </p>
                             </div>
-                            <h3 className="text-xl text-[var(--text-primary)] mb-3">{s.title}</h3>
-                            <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">{s.body}</p>
-                            <ul className="space-y-2">
-                                {s.bullets.map((b) => (
-                                    <li key={b} className="flex items-start gap-2 text-sm text-[var(--text-secondary)]">
-                                        <CheckCircle2 size={15} className="text-[var(--brand-600)] mt-0.5 flex-shrink-0" />
-                                        <span>{b}</span>
-                                    </li>
-                                ))}
-                            </ul>
                         </article>
                     ))}
                 </div>
@@ -178,78 +389,234 @@ function Servicios() {
 }
 
 /* ─────────────────────────────────────────────
-   PARA QUIÉN — inmobiliarias vs desarrolladoras
+   STATS
    ───────────────────────────────────────────── */
 
-const AUDIENCES = [
+const STATS = [
     {
-        kind: 'Inmobiliarias',
-        icon: Building2,
-        tagline: 'Captación y usados',
-        description:
-            'Para inmobiliarias que trabajan con propiedades de terceros y necesitan más leads calificados que atender con equipos chicos.',
-        bullets: [
-            'Captamos propiedades para vender y alquilar',
-            'Cada propiedad mide leads, visitas y cierres',
-            'Reportes para dueños de propiedad listos para enviar',
-            'Pipeline con etapas reales: visita → reserva → escritura',
-        ],
+        target: 72,
+        prefix: '+',
+        suffix: '',
+        decimals: 0,
+        title: 'horas/mes ahorradas por agente',
+        body: 'Lo que la IA califica mientras tu equipo duerme.',
     },
     {
-        kind: 'Desarrolladoras',
-        icon: TrendingUp,
-        tagline: 'Emprendimientos en pozo y terminados',
-        description:
-            'Para desarrolladoras que están vendiendo uno o varios emprendimientos y necesitan ver absorción de unidades, CAC por proyecto y pipeline en tiempo real.',
-        bullets: [
-            'Inventario por proyecto con estado de cada unidad',
-            'Tasa de absorción mensual visible para la dirección',
-            'CAC por unidad calculado automáticamente',
-            'Dashboard de proyectos cruzando leads, visitas y reservas',
-        ],
+        target: 83,
+        prefix: '',
+        suffix: '%',
+        decimals: 0,
+        title: 'de leads descartados automáticamente',
+        body: 'Curiosos, fuera de presupuesto, fuera de zona — la IA los filtra antes de que lleguen al agente.',
+    },
+    {
+        target: 2,
+        prefix: '',
+        suffix: ' min',
+        decimals: 0,
+        suffixSmall: true,
+        title: 'tiempo promedio a primera respuesta',
+        body: '24/7. Mientras la competencia tarda 8 horas.',
+    },
+    {
+        target: 7,
+        prefix: '',
+        suffix: ' días',
+        decimals: 0,
+        suffixSmall: true,
+        title: 'para los primeros leads calificados',
+        body: 'Desde que arrancamos, las primeras visitas con intención real entran al pipeline.',
     },
 ];
 
-function ParaQuien() {
+function StatNum({ target, prefix, suffix, decimals, suffixSmall }) {
+    const ref = useRef(null);
+    const [val, setVal] = useState(0);
+
+    useEffect(() => {
+        const node = ref.current;
+        if (!node) return;
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) {
+            setVal(target);
+            return;
+        }
+        let raf = null;
+        let started = false;
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+        const animate = () => {
+            const dur = 1800;
+            const start = performance.now();
+            const tick = (now) => {
+                const t = Math.min(1, (now - start) / dur);
+                setVal(easeOutCubic(t) * target);
+                if (t < 1) raf = requestAnimationFrame(tick);
+                else setVal(target);
+            };
+            raf = requestAnimationFrame(tick);
+        };
+
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting && !started) {
+                        started = true;
+                        animate();
+                        io.unobserve(e.target);
+                    }
+                });
+            },
+            { threshold: 0.4 }
+        );
+        io.observe(node);
+        return () => {
+            io.disconnect();
+            if (raf) cancelAnimationFrame(raf);
+        };
+    }, [target]);
+
+    const formatted = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toString();
+
     return (
-        <section id="para-quien" className="relative py-28 bg-[var(--surface-2)]">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <span className="text-xs font-semibold tracking-widest text-[var(--brand-700)] uppercase">
-                        Para quién
-                    </span>
-                    <h2 className="mt-3 text-4xl md:text-5xl text-[var(--text-primary)]">
-                        Pensado para cómo opera tu negocio
+        <div ref={ref} className="stat-num">
+            {prefix && <span>{prefix}</span>}
+            <span>{formatted}</span>
+            {suffix && (
+                <span className={suffixSmall ? 'stat-suffix-small' : undefined}>{suffix}</span>
+            )}
+        </div>
+    );
+}
+
+function Stats() {
+    return (
+        <section
+            data-screen-label="04 Stats"
+            id="stats"
+            className="section-pad"
+            style={{ background: 'var(--bg-alt)' }}
+        >
+            <div className="container-x">
+                <div className="reveal max-w-3xl">
+                    <div className="eyebrow mb-6">En promedio, por mes</div>
+                    <h2 className="section-title">
+                        Lo que GrowthBrick le devuelve a tu operación.
                     </h2>
-                    <p className="mt-4 text-lg text-[var(--text-secondary)]">
-                        No es el mismo juego vender un departamento usado que colocar 80 unidades de un pozo. El CRM se adapta a cada uno.
-                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                    {AUDIENCES.map((a) => (
-                        <div key={a.kind} className="card-surface p-8">
-                            <div className="flex items-center gap-3 mb-2">
-                                <div className="w-10 h-10 rounded-lg bg-[var(--brand-700)] flex items-center justify-center">
-                                    <a.icon size={18} className="text-white" />
-                                </div>
-                                <div>
-                                    <div className="text-xs text-[var(--text-muted)]">{a.tagline}</div>
-                                    <h3 className="text-2xl text-[var(--text-primary)]">{a.kind}</h3>
-                                </div>
+                <div className="mt-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-20 lg:gap-x-14">
+                    {STATS.map((s, i) => (
+                        <div
+                            key={s.title}
+                            className="reveal stat-card"
+                            style={{ animationDelay: `${i * 80}ms` }}
+                        >
+                            <div className="stat-index">/ {String(i + 1).padStart(2, '0')}</div>
+                            <div className="mt-7">
+                                <StatNum {...s} />
                             </div>
-                            <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mt-4 mb-6">
-                                {a.description}
-                            </p>
-                            <ul className="space-y-2.5">
-                                {a.bullets.map((b) => (
-                                    <li key={b} className="flex items-start gap-2.5 text-sm text-[var(--text-primary)]">
-                                        <CheckCircle2 size={16} className="text-[var(--brand-600)] mt-0.5 flex-shrink-0" />
-                                        <span>{b}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="stat-title mt-7">{s.title}</div>
+                            <p className="stat-body mt-3">{s.body}</p>
                         </div>
+                    ))}
+                </div>
+
+                <p className="mt-24 text-xs text-[var(--ink-muted)] tracking-wide">
+                    Datos promedio de inmobiliarias y desarrolladoras activas en GrowthBrick
+                    durante los últimos 90 días.
+                </p>
+            </div>
+        </section>
+    );
+}
+
+/* ─────────────────────────────────────────────
+   FUNCIONES
+   ───────────────────────────────────────────── */
+
+const FEATURES = [
+    {
+        icon: Palette,
+        t: 'Creativos de Meta Ads para inmobiliarias y desarrolladoras',
+        d: 'Anuncios pensados para vender propiedades y unidades en pozo, no plantillas genéricas.',
+    },
+    {
+        icon: Users,
+        t: 'Audiencias por barrio, ticket y perfil',
+        d: 'Apuntamos cada propiedad al comprador exacto que la busca.',
+    },
+    {
+        icon: Webhook,
+        t: 'Webhook nativo Meta Lead Ads',
+        d: 'Cada lead aparece en tu pipeline en menos de 5 segundos.',
+    },
+    {
+        icon: MessageSquare,
+        t: 'WhatsApp Cloud API multi-cuenta',
+        d: 'Conectá todos tus números oficiales en una bandeja única.',
+    },
+    {
+        icon: Sparkles,
+        t: 'IA de calificación con score y contexto',
+        d: 'Cada lead llega con score 0–100 y resumen de la conversación.',
+    },
+    {
+        icon: Route,
+        t: 'Distribución automática a agentes',
+        d: 'Round-robin por zona o cartera, sin pelearse por leads.',
+    },
+    {
+        icon: Kanban,
+        t: 'Pipeline de 9 etapas para venta inmobiliaria',
+        d: 'De primer contacto a escritura, sin forzar etapas genéricas.',
+    },
+    {
+        icon: Target,
+        t: 'Atribución ad-to-property completa',
+        d: 'Sabé qué creativo, qué campaña y qué propiedad cerraron.',
+    },
+    {
+        icon: Home,
+        t: 'Portal del propietario',
+        d: 'Tu cliente ve avances de venta sin tener que llamarte.',
+    },
+];
+
+function Funciones() {
+    return (
+        <section
+            data-screen-label="05 Funciones"
+            id="funciones"
+            className="section-pad bg-[var(--bg-light)]"
+        >
+            <div className="container-x">
+                <div className="reveal max-w-4xl">
+                    <div className="eyebrow mb-6">Funciones</div>
+                    <h2 className="section-title">
+                        Todo lo que tu equipo necesita.
+                        <br />
+                        Nada de lo que sobra.
+                    </h2>
+                </div>
+
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+                    {FEATURES.map((f, idx) => (
+                        <article
+                            key={f.t}
+                            className="reveal feat-row"
+                            style={{ animationDelay: `${idx * 50}ms` }}
+                        >
+                            <div className="feat-icon">
+                                <f.icon size={22} strokeWidth={1.75} />
+                            </div>
+                            <h3 className="mt-5 font-semibold text-[1.0625rem] text-[var(--ink)] leading-snug">
+                                {f.t}
+                            </h3>
+                            <p className="mt-2 text-sm text-[var(--ink-muted)] leading-relaxed">
+                                {f.d}
+                            </p>
+                        </article>
                     ))}
                 </div>
             </div>
@@ -258,64 +625,42 @@ function ParaQuien() {
 }
 
 /* ─────────────────────────────────────────────
-   CÓMO FUNCIONA
+   CONSTRUIDO DESDE ADENTRO
    ───────────────────────────────────────────── */
 
-const STEPS = [
-    {
-        num: '01',
-        icon: Zap,
-        title: 'Entrevista + setup',
-        body: 'Nos sentamos, mapeamos tu inventario, tus fuentes de leads y tu equipo. Conectamos Meta Ads, WhatsApp oficial y el CRM en menos de dos semanas.',
-    },
-    {
-        num: '02',
-        icon: Target,
-        title: 'Campañas + automatizaciones',
-        body: 'Lanzamos creativos, configuramos el flujo de verificación de leads por WhatsApp y dejamos templates aprobados para reactivación.',
-    },
-    {
-        num: '03',
-        icon: TrendingUp,
-        title: 'Operación y medición',
-        body: 'Tu equipo trabaja el pipeline, nosotros optimizamos anuncios y medimos todo. Revisión mensual con métricas claras, no PowerPoints vacíos.',
-    },
-];
-
-function ComoFunciona() {
+function Construido() {
     return (
-        <section id="como-funciona" className="relative py-28">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <span className="text-xs font-semibold tracking-widest text-[var(--brand-700)] uppercase">
-                        Cómo funciona
-                    </span>
-                    <h2 className="mt-3 text-4xl md:text-5xl text-[var(--text-primary)]">
-                        En producción en menos de 14 días
-                    </h2>
-                    <p className="mt-4 text-lg text-[var(--text-secondary)]">
-                        Un proceso probado con clientes en Buenos Aires y Entre Ríos. Sin proyectos eternos de integración.
-                    </p>
-                </div>
-
-                <div className="relative grid md:grid-cols-3 gap-6">
-                    {/* connector line on desktop */}
-                    <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-px border-t-2 border-dashed border-[var(--brand-200)]" aria-hidden="true" />
-
-                    {STEPS.map((s) => (
-                        <div key={s.num} className="relative bg-white rounded-2xl p-7 border border-[var(--border-subtle)]">
-                            <div className="flex items-start justify-between mb-5">
-                                <div className="w-11 h-11 rounded-xl bg-[var(--brand-600)] flex items-center justify-center">
-                                    <s.icon size={20} className="text-white" />
-                                </div>
-                                <span className="text-[42px] font-bold text-[var(--brand-100)] leading-none tracking-tighter">
-                                    {s.num}
-                                </span>
-                            </div>
-                            <h3 className="text-lg text-[var(--text-primary)] mb-2">{s.title}</h3>
-                            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{s.body}</p>
-                        </div>
-                    ))}
+        <section
+            data-screen-label="06 Construido"
+            id="construido"
+            className="section-pad bg-[var(--bg-light)] border-t border-[var(--border-soft)]"
+        >
+            <div className="container-x">
+                <div className="reveal">
+                    <div className="eyebrow mb-8">Construido desde adentro</div>
+                    <blockquote
+                        className="editorial-p max-w-3xl"
+                        style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.25rem)' }}
+                    >
+                        <span aria-hidden="true" style={{ color: 'var(--brand-600)' }}>
+                            “
+                        </span>
+                        GrowthBrick no es un CRM genérico con estética inmobiliaria. Fue diseñado
+                        desde cero para el negocio argentino: corretaje, desarrollos, alquileres y
+                        ventas. Cada pipeline, cada campo y cada métrica responde a cómo opera
+                        realmente una inmobiliaria o desarrolladora. La diferencia es simple:
+                        otros CRM vienen del SaaS. GrowthBrick viene del negocio inmobiliario.
+                        <span aria-hidden="true" style={{ color: 'var(--brand-600)' }}>
+                            ”
+                        </span>
+                    </blockquote>
+                    <div className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ink-muted)] border border-[var(--border-soft)] rounded-full px-3 py-1.5">
+                        <span
+                            className="inline-block w-1.5 h-1.5 rounded-full"
+                            style={{ background: 'var(--brand-600)' }}
+                        />
+                        Hecho en Argentina
+                    </div>
                 </div>
             </div>
         </section>
@@ -329,62 +674,74 @@ function ComoFunciona() {
 const TESTIMONIALS = [
     {
         quote:
-            'En dos meses pasamos de operar WhatsApp desde cuatro celulares distintos a un inbox compartido. La dueña recupera horas por semana y los agentes responden más rápido.',
-        name: 'Martina Soler',
-        role: 'Directora',
-        company: 'Soler Propiedades',
-        location: 'Palermo, CABA',
+            'Antes atendíamos 60 WhatsApps por día y cerrábamos 2 ventas. Ahora atendemos 15 calificados y cerramos 6. Triplicamos las ventas con menos ruido.',
+        name: 'Marina G.',
+        role: 'Directora Comercial',
+        result: '+3 ventas en 45 días',
     },
     {
         quote:
-            'Nos ordenó la cabeza. Antes mirábamos Excel los lunes, ahora el dashboard me dice el CPL por proyecto y qué agente está respondiendo a tiempo y cuál no. Cambió cómo conducimos.',
-        name: 'Fernando Zurita',
-        role: 'Gerente Comercial',
-        company: 'Torres del Este',
-        location: 'Paraná, Entre Ríos',
+            'La IA me descarta a los curiosos antes de que me hagan perder media hora. Recuperé 2 horas reales por día y dejé de pagar portales.',
+        name: 'Diego P.',
+        role: 'Corredor inmobiliario',
+        result: '4 exclusivas captadas en 30 días',
     },
     {
         quote:
-            'La integración con Meta fue fluida. Ahora cada venta se atribuye al anuncio que la originó y sabemos exactamente qué creativos escalar. Dejamos de tirar plata en campañas que no movían la aguja.',
-        name: 'Lucía Bermúdez',
-        role: 'Dueña',
-        company: 'Bermúdez Inversiones',
-        location: 'San Isidro, Buenos Aires',
+            'Es el primer sistema que entiende cómo se vende una propiedad en Argentina. No tuve que adaptar nada — los anuncios, la IA y el CRM ya hablan el mismo idioma.',
+        name: 'Laura M.',
+        role: 'Socia · Desarrolladora',
+        result: '2 unidades en pozo en 30 días',
     },
 ];
 
-function Casos() {
+function Testimonios() {
     return (
-        <section id="casos" className="relative py-28 bg-[var(--brand-950)] text-white overflow-hidden">
-            <div className="absolute inset-0 opacity-20 noise-bg" aria-hidden="true" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.12) 1px, transparent 0)' }} />
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[var(--brand-700)] opacity-20 blur-3xl" aria-hidden="true" />
-
-            <div className="relative max-w-6xl mx-auto px-6">
-                <div className="text-center mb-16 max-w-2xl mx-auto">
-                    <span className="text-xs font-semibold tracking-widest text-[var(--brand-300)] uppercase">
-                        Clientes
-                    </span>
-                    <h2 className="mt-3 text-4xl md:text-5xl text-white">
-                        Trabajamos con equipos que venden de verdad
+        <section
+            data-screen-label="07 Testimonios"
+            id="testimonios"
+            className="section-pad"
+            style={{ background: 'var(--bg-alt)' }}
+        >
+            <div className="container-x">
+                <div className="reveal max-w-4xl">
+                    <div className="eyebrow mb-6">Resultados</div>
+                    <h2 className="section-title">
+                        Inmobiliarias y desarrolladoras que dejaron de pagar portales.
+                        <br />Y empezaron a cerrar más.
                     </h2>
-                    <p className="mt-4 text-lg text-[var(--brand-100)]">
-                        Inmobiliarias y desarrolladoras de Buenos Aires y Entre Ríos que dejaron de operar con planillas y pegaron un salto operativo.
-                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                    {TESTIMONIALS.map((t) => (
-                        <figure key={t.name} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 flex flex-col">
-                            <Quote size={28} className="text-[var(--brand-300)] mb-4" aria-hidden="true" />
-                            <blockquote className="text-[15px] leading-relaxed text-white flex-1">
-                                {t.quote}
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+                    {TESTIMONIALS.map((t, i) => (
+                        <figure
+                            key={t.name}
+                            className="reveal"
+                            style={{ animationDelay: `${i * 80}ms` }}
+                        >
+                            <span
+                                className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.10em] rounded-full px-3 py-1.5 mb-5"
+                                style={{
+                                    background: 'var(--brand-50)',
+                                    color: 'var(--brand-700)',
+                                    border: '1px solid var(--brand-200)',
+                                }}
+                            >
+                                <span
+                                    className="inline-block w-1.5 h-1.5 rounded-full"
+                                    style={{ background: 'var(--brand-600)' }}
+                                />
+                                {t.result}
+                            </span>
+                            <blockquote
+                                className="font-display text-[1.35rem] leading-[1.35]"
+                                style={{ fontWeight: 500, letterSpacing: '-0.015em' }}
+                            >
+                                “{t.quote}”
                             </blockquote>
-                            <figcaption className="mt-6 pt-5 border-t border-white/10">
-                                <div className="text-sm font-semibold text-white">{t.name}</div>
-                                <div className="text-xs text-[var(--brand-200)]">
-                                    {t.role} · {t.company}
-                                </div>
-                                <div className="text-xs text-white/50 mt-0.5">{t.location}</div>
+                            <figcaption className="mt-6 text-sm text-[var(--ink-muted)]">
+                                <div className="font-semibold text-[var(--ink)]">{t.name}</div>
+                                {t.role}
                             </figcaption>
                         </figure>
                     ))}
@@ -395,32 +752,39 @@ function Casos() {
 }
 
 /* ─────────────────────────────────────────────
-   CTA final
+   CTA FINAL
    ───────────────────────────────────────────── */
 
 function CTAFinal() {
     return (
-        <section className="relative py-28">
-            <div className="max-w-5xl mx-auto px-6">
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[var(--brand-700)] via-[var(--brand-600)] to-[var(--brand-500)] px-8 py-20 md:px-16 md:py-24 text-center">
-                    <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.18) 1px, transparent 0)', backgroundSize: '24px 24px' }} aria-hidden="true" />
-                    <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/10 blur-3xl" aria-hidden="true" />
-
-                    <div className="relative">
-                        <h2 className="text-4xl md:text-5xl text-white mb-5 max-w-3xl mx-auto">
-                            ¿Listo para ordenar tu operación?
-                        </h2>
-                        <p className="text-lg text-white/85 max-w-2xl mx-auto mb-10">
-                            Una charla de 30 minutos alcanza para ver si somos para vos. Sin discurso de venta, sin compromiso.
-                        </p>
-                        <a href={MAILTO}>
-                            <Button size="lg" className="bg-white text-[var(--brand-800)] hover:bg-[var(--brand-50)] shadow-xl">
-                                Agendá una demo <ArrowRight size={18} />
-                            </Button>
+        <section className="section-pad bg-[var(--bg-light)]">
+            <div className="container-x">
+                <div className="reveal text-center max-w-2xl mx-auto">
+                    <div className="eyebrow mb-6">Próximamente</div>
+                    <h2 className="section-title">
+                        Estamos completos
+                        <br />
+                        por ahora.
+                    </h2>
+                    <p className="mt-6 text-[var(--ink-muted)] text-base md:text-lg leading-relaxed">
+                        Trabajamos con un número limitado de inmobiliarias y desarrolladoras
+                        para garantizar resultados. Próximamente abrimos más cupos — mientras
+                        tanto, podés recorrer cómo funciona el sistema.
+                    </p>
+                    <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
+                        <span
+                            aria-disabled="true"
+                            className="btn-inactive px-8 py-3 inline-flex items-center gap-2.5 text-sm"
+                        >
+                            <span className="pulse-dot" />
+                            Próximamente abrimos más cupos
+                        </span>
+                        <a
+                            href="#funciones"
+                            className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-lg border border-[var(--border-soft)] hover:border-[var(--ink)] transition-colors"
+                        >
+                            Ver qué incluye
                         </a>
-                        <p className="mt-6 text-sm text-white/70">
-                            Respondemos dentro de 24 h hábiles.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -434,24 +798,111 @@ function CTAFinal() {
 
 function Footer() {
     return (
-        <footer className="border-t border-[var(--border-subtle)] py-12 bg-[var(--surface-1)]">
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-                    <div>
-                        <Logo />
-                        <p className="mt-3 text-xs text-[var(--text-muted)] max-w-sm">
-                            Agencia digital para inmobiliarias y desarrolladoras. Buenos Aires · Entre Ríos.
+        <footer className="bg-[var(--bg-dark)] text-[var(--ink-on-dark)]">
+            <div className="container-x py-20">
+                <div className="grid lg:grid-cols-12 gap-12">
+                    <div className="lg:col-span-5">
+                        <div
+                            className="font-display text-4xl md:text-5xl"
+                            style={{ fontWeight: 400, letterSpacing: '-0.03em' }}
+                        >
+                            GrowthBrick
+                        </div>
+                        <p className="mt-4 text-white/60 max-w-sm">
+                            La IA califica. Tu equipo cierra.
                         </p>
                     </div>
-                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6 text-sm text-[var(--text-secondary)]">
-                        <a href="#servicios" className="hover:text-[var(--brand-700)] transition-colors">Servicios</a>
-                        <a href="#para-quien" className="hover:text-[var(--brand-700)] transition-colors">Para quién</a>
-                        <a href="#como-funciona" className="hover:text-[var(--brand-700)] transition-colors">Cómo funciona</a>
-                        <a href={MAILTO} className="hover:text-[var(--brand-700)] transition-colors">hola@growthbrick.tech</a>
+                    <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8 text-sm">
+                        <div>
+                            <div className="text-white/40 uppercase text-xs tracking-[0.12em] font-semibold mb-4">
+                                Producto
+                            </div>
+                            <ul className="space-y-2.5 text-white/85">
+                                <li>
+                                    <a href="#funciones" className="hover:text-white">
+                                        Funciones
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#solucion" className="hover:text-white">
+                                        Cómo funciona
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#testimonios" className="hover:text-white">
+                                        Testimonios
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div className="text-white/40 uppercase text-xs tracking-[0.12em] font-semibold mb-4">
+                                Empresa
+                            </div>
+                            <ul className="space-y-2.5 text-white/85">
+                                <li>
+                                    <a href="#construido" className="hover:text-white">
+                                        Quiénes somos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href={MAILTO} className="hover:text-white">
+                                        Contacto
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div className="text-white/40 uppercase text-xs tracking-[0.12em] font-semibold mb-4">
+                                Legal
+                            </div>
+                            <ul className="space-y-2.5 text-white/85">
+                                <li>
+                                    <a href="#" className="hover:text-white">
+                                        Términos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:text-white">
+                                        Privacidad
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" className="hover:text-white">
+                                        Cookies
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div className="mt-10 pt-6 border-t border-[var(--border-subtle)] text-xs text-[var(--text-muted)]">
-                    © {new Date().getFullYear()} GrowthBrick. Todos los derechos reservados.
+                <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                    <div className="text-white/50 text-sm">
+                        © {new Date().getFullYear()} GrowthBrick. Hecho en Argentina.
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <a
+                            href="#"
+                            aria-label="Instagram"
+                            className="p-2 rounded-md text-white/60 hover:text-white hover:bg-white/5"
+                        >
+                            <Instagram size={18} />
+                        </a>
+                        <a
+                            href="#"
+                            aria-label="LinkedIn"
+                            className="p-2 rounded-md text-white/60 hover:text-white hover:bg-white/5"
+                        >
+                            <Linkedin size={18} />
+                        </a>
+                        <a
+                            href="#"
+                            aria-label="Twitter"
+                            className="p-2 rounded-md text-white/60 hover:text-white hover:bg-white/5"
+                        >
+                            <Twitter size={18} />
+                        </a>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -462,19 +913,52 @@ function Footer() {
    PAGE
    ───────────────────────────────────────────── */
 
+function RevealObserver() {
+    useEffect(() => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const els = document.querySelectorAll('.reveal');
+        if (reduced) {
+            els.forEach((el) => {
+                el.style.opacity = 1;
+            });
+            return;
+        }
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('in');
+                        io.unobserve(e.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+        els.forEach((el) => io.observe(el));
+        return () => io.disconnect();
+    }, []);
+    return null;
+}
+
 export default function Page() {
     return (
         <>
+            <a href="#main" className="skip-link">
+                Saltar al contenido
+            </a>
             <Nav />
-            <main>
+            <main id="main">
                 <Hero />
-                <Servicios />
-                <ParaQuien />
-                <ComoFunciona />
-                <Casos />
+                <Problema />
+                <Solucion />
+                <Stats />
+                <Funciones />
+                <Construido />
+                <Testimonios />
                 <CTAFinal />
             </main>
             <Footer />
+            <RevealObserver />
         </>
     );
 }
