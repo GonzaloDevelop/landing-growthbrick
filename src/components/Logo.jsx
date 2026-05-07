@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
 
-export function Logo({ className, withWordmark = true }) {
+export function Logo({ className, withWordmark = true, size = 36 }) {
     return (
         <div className={cn('flex items-center gap-2.5', className)}>
             <svg
-                width="36"
-                height="36"
+                width={size}
+                height={size}
                 viewBox="0 0 64 64"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

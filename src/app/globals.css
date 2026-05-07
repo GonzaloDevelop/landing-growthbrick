@@ -177,7 +177,7 @@
     }
     .stat-card .stat-index {
         font-family: var(--font-sans);
-        font-size: 0.72rem;
+        font-size: 0.875rem;
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -186,16 +186,29 @@
     }
     .stat-card .stat-title {
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 1.25rem;
         color: var(--ink);
         line-height: 1.35;
-        max-width: 16rem;
+        max-width: 22rem;
     }
     .stat-card .stat-body {
-        font-size: 0.85rem;
+        font-size: 1.125rem;
         color: var(--ink-muted);
         line-height: 1.55;
-        max-width: 16rem;
+        max-width: 24rem;
+    }
+    @media (min-width: 1024px) {
+        .stat-card .stat-title {
+            font-size: 1.125rem;
+            max-width: 18rem;
+        }
+        .stat-card .stat-body {
+            font-size: 1rem;
+            max-width: 19rem;
+        }
+        .stat-card .stat-index {
+            font-size: 0.78rem;
+        }
     }
 
     .editorial-p {
@@ -356,6 +369,45 @@
         }
         50% {
             box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.10), 0 0 18px rgba(52, 211, 153, 0.9);
+        }
+    }
+
+    /* Glowing logo for nav */
+    .nav-logo-glow {
+        position: relative;
+        line-height: 0;
+    }
+    .nav-logo-glow svg {
+        filter:
+            drop-shadow(0 0 6px rgba(52, 211, 153, 0.55))
+            drop-shadow(0 0 14px rgba(52, 211, 153, 0.35));
+        animation: pulse-logo 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse-logo {
+        0%, 100% {
+            filter:
+                drop-shadow(0 0 6px rgba(52, 211, 153, 0.55))
+                drop-shadow(0 0 14px rgba(52, 211, 153, 0.30));
+        }
+        50% {
+            filter:
+                drop-shadow(0 0 10px rgba(52, 211, 153, 0.75))
+                drop-shadow(0 0 22px rgba(52, 211, 153, 0.45));
+        }
+    }
+    .nav-scrolled .nav-logo-glow svg {
+        animation: pulse-logo-scrolled 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse-logo-scrolled {
+        0%, 100% {
+            filter:
+                drop-shadow(0 0 4px rgba(16, 185, 129, 0.40))
+                drop-shadow(0 0 10px rgba(16, 185, 129, 0.20));
+        }
+        50% {
+            filter:
+                drop-shadow(0 0 8px rgba(16, 185, 129, 0.60))
+                drop-shadow(0 0 16px rgba(16, 185, 129, 0.30));
         }
     }
 

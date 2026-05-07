@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Logo } from '@/components/Logo';
 import {
     ArrowRight,
     Play,
@@ -53,10 +54,14 @@ function Nav() {
                 >
                     <a
                         href="#"
-                        className="nav-wordmark px-4 py-2 font-display text-lg flex items-center gap-2"
+                        className="nav-wordmark px-3 py-2 font-display text-lg flex items-center gap-2.5"
                         style={{ fontWeight: 600, letterSpacing: '-0.02em' }}
                     >
-                        <span className="nav-dot" aria-hidden="true" />
+                        <Logo
+                            withWordmark={false}
+                            size={26}
+                            className="nav-logo-glow"
+                        />
                         GrowthBrick
                     </a>
 
@@ -244,7 +249,7 @@ function Hero() {
                                 Que tu equipo cierre.
                             </h1>
                             <p
-                                className="mt-6 max-w-xl text-white/80 text-base md:text-lg leading-relaxed animate-blur-fade-up"
+                                className="mt-6 max-w-xl text-white/80 text-lg md:text-xl leading-relaxed animate-blur-fade-up"
                                 style={{ animationDelay: '600ms' }}
                             >
                                 Te instalamos un sistema completo: anuncios en Meta apuntados a tu
@@ -376,7 +381,7 @@ function Solucion() {
                                 >
                                     {s.title}
                                 </h3>
-                                <p className="mt-3 text-[var(--ink-muted)] text-[15px] leading-relaxed">
+                                <p className="mt-4 text-[var(--ink-muted)] text-[1.125rem] lg:text-base leading-relaxed">
                                     {s.body}
                                 </p>
                             </div>
@@ -505,7 +510,7 @@ function Stats() {
                     </h2>
                 </div>
 
-                <div className="mt-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-20 lg:gap-x-14">
+                <div className="mt-20 lg:mt-28 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 sm:gap-y-14 lg:gap-y-20 lg:gap-x-14">
                     {STATS.map((s, i) => (
                         <div
                             key={s.title}
@@ -513,16 +518,16 @@ function Stats() {
                             style={{ animationDelay: `${i * 80}ms` }}
                         >
                             <div className="stat-index">/ {String(i + 1).padStart(2, '0')}</div>
-                            <div className="mt-7">
+                            <div className="mt-6">
                                 <StatNum {...s} />
                             </div>
-                            <div className="stat-title mt-7">{s.title}</div>
+                            <div className="stat-title mt-6">{s.title}</div>
                             <p className="stat-body mt-3">{s.body}</p>
                         </div>
                     ))}
                 </div>
 
-                <p className="mt-24 text-xs text-[var(--ink-muted)] tracking-wide">
+                <p className="mt-20 text-base lg:text-sm text-[var(--ink-muted)] leading-relaxed">
                     Datos promedio de inmobiliarias y desarrolladoras activas en GrowthBrick
                     durante los últimos 90 días.
                 </p>
@@ -600,7 +605,7 @@ function Funciones() {
                     </h2>
                 </div>
 
-                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-10">
                     {FEATURES.map((f, idx) => (
                         <article
                             key={f.t}
@@ -608,12 +613,12 @@ function Funciones() {
                             style={{ animationDelay: `${idx * 50}ms` }}
                         >
                             <div className="feat-icon">
-                                <f.icon size={22} strokeWidth={1.75} />
+                                <f.icon size={24} strokeWidth={1.75} />
                             </div>
-                            <h3 className="mt-5 font-semibold text-[1.0625rem] text-[var(--ink)] leading-snug">
+                            <h3 className="mt-5 font-semibold text-[1.25rem] lg:text-[1.125rem] text-[var(--ink)] leading-snug">
                                 {f.t}
                             </h3>
-                            <p className="mt-2 text-sm text-[var(--ink-muted)] leading-relaxed">
+                            <p className="mt-3 text-[1.125rem] lg:text-base text-[var(--ink-muted)] leading-relaxed">
                                 {f.d}
                             </p>
                         </article>
@@ -734,13 +739,15 @@ function Testimonios() {
                                 {t.result}
                             </span>
                             <blockquote
-                                className="font-display text-[1.35rem] leading-[1.35]"
+                                className="font-display text-[1.5rem] lg:text-[1.35rem] leading-[1.35]"
                                 style={{ fontWeight: 500, letterSpacing: '-0.015em' }}
                             >
                                 “{t.quote}”
                             </blockquote>
-                            <figcaption className="mt-6 text-sm text-[var(--ink-muted)]">
-                                <div className="font-semibold text-[var(--ink)]">{t.name}</div>
+                            <figcaption className="mt-6 text-base lg:text-sm text-[var(--ink-muted)]">
+                                <div className="font-semibold text-[var(--ink)] text-[1.0625rem] lg:text-base">
+                                    {t.name}
+                                </div>
                                 {t.role}
                             </figcaption>
                         </figure>
@@ -766,7 +773,7 @@ function CTAFinal() {
                         <br />
                         por ahora.
                     </h2>
-                    <p className="mt-6 text-[var(--ink-muted)] text-base md:text-lg leading-relaxed">
+                    <p className="mt-6 text-[var(--ink-muted)] text-lg md:text-xl leading-relaxed">
                         Trabajamos con un número limitado de inmobiliarias y desarrolladoras
                         para garantizar resultados. Próximamente abrimos más cupos — mientras
                         tanto, podés recorrer cómo funciona el sistema.
