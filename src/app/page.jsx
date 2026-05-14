@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Logo } from '@/components/Logo';
 import {
-    ArrowRight,
     Play,
     Menu,
     X,
@@ -24,8 +23,6 @@ import {
     MapPin,
     Zap,
 } from 'lucide-react';
-
-const MAILTO = 'mailto:hola@growthbrick.tech?subject=Quiero%20ver%20una%20demo%20de%20GrowthBrick';
 
 /* ─────────────────────────────────────────────
    NAV — improved liquid glass
@@ -103,13 +100,6 @@ function Nav() {
                     </nav>
 
                     <div className="flex items-center gap-2">
-                        <a
-                            href={MAILTO}
-                            className="hidden md:inline-flex liquid-glass rounded-lg px-5 py-2 text-sm font-semibold items-center gap-2 animate-blur-fade-up"
-                            style={{ animationDelay: '320ms' }}
-                        >
-                            Sumate a la lista
-                        </a>
                         <button
                             onClick={() => setOpen((v) => !v)}
                             className="nav-burger lg:hidden ml-1 p-2"
@@ -140,9 +130,6 @@ function Nav() {
                         </a>
                         <a href="#testimonios" className="py-2" onClick={() => setOpen(false)}>
                             Testimonios
-                        </a>
-                        <a href={MAILTO} className="py-2" onClick={() => setOpen(false)}>
-                            Contactanos
                         </a>
                     </div>
                 </div>
@@ -246,7 +233,7 @@ function Hero() {
                             style={{ animationDelay: '200ms' }}
                         >
                             <span className="pulse-dot" />
-                            Cupo limitado · Sumate a la lista de espera
+                            Próximamente
                         </div>
 
                         <h1
@@ -268,13 +255,6 @@ function Hero() {
                             className="mt-8 flex flex-wrap items-center gap-3 lg:justify-center animate-blur-fade-up"
                             style={{ animationDelay: '800ms' }}
                         >
-                            <a
-                                href={MAILTO}
-                                className="rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 bg-white text-[var(--ink)] hover:bg-white/90 transition-colors"
-                            >
-                                Sumate a la lista de espera
-                                <ArrowRight size={16} />
-                            </a>
                             <a
                                 href="#solucion"
                                 className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
@@ -845,25 +825,16 @@ function CTAFinal() {
         <section className="section-pad bg-[var(--bg-light)]">
             <div className="container-x">
                 <div className="reveal text-center max-w-2xl mx-auto">
-                    <div className="eyebrow mb-6">Cupo limitado</div>
                     <h2 className="section-title">
-                        Sumate a la lista
+                        Estamos completos
                         <br />
-                        de espera.
+                        por ahora.
                     </h2>
                     <p className="mt-6 text-[var(--ink-muted)] text-lg md:text-xl leading-relaxed">
                         Trabajamos con un número limitado de inmobiliarias para
-                        garantizar resultados. Avisamos en orden de llegada.
+                        garantizar resultados.
                     </p>
-                    <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
-                        <a
-                            href={MAILTO}
-                            className="px-8 py-3 inline-flex items-center gap-2.5 text-sm font-semibold rounded-lg text-white transition-colors"
-                            style={{ background: 'var(--brand-700)' }}
-                        >
-                            Quiero estar en la lista
-                            <ArrowRight size={16} />
-                        </a>
+                    <div className="mt-10 flex items-center justify-center">
                         <a
                             href="#funciones"
                             className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-lg border border-[var(--border-soft)] hover:border-[var(--ink)] transition-colors"
@@ -928,11 +899,6 @@ function Footer() {
                                 <li>
                                     <a href="#construido" className="hover:text-white">
                                         Quiénes somos
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href={MAILTO} className="hover:text-white">
-                                        Contacto
                                     </a>
                                 </li>
                             </ul>
