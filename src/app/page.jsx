@@ -19,6 +19,10 @@ import {
     Shield,
     Instagram,
     Youtube,
+    Ban,
+    Lock,
+    MapPin,
+    Zap,
 } from 'lucide-react';
 
 const MAILTO = 'mailto:hola@growthbrick.tech?subject=Quiero%20ver%20una%20demo%20de%20GrowthBrick';
@@ -73,7 +77,7 @@ function Nav() {
                             style={{ animationDelay: '120ms' }}
                             href="#solucion"
                         >
-                            Producto
+                            Cómo funciona
                         </a>
                         <a
                             className="nav-link-muted animate-blur-fade-up"
@@ -85,16 +89,16 @@ function Nav() {
                         <a
                             className="nav-link-muted animate-blur-fade-up"
                             style={{ animationDelay: '240ms' }}
-                            href="#testimonios"
+                            href="#por-que"
                         >
-                            Testimonios
+                            Por qué
                         </a>
                         <a
                             className="nav-link-muted animate-blur-fade-up"
                             style={{ animationDelay: '300ms' }}
-                            href="#construido"
+                            href="#testimonios"
                         >
-                            Nosotros
+                            Testimonios
                         </a>
                     </nav>
 
@@ -127,16 +131,16 @@ function Nav() {
                 >
                     <div className="container-x py-4 flex flex-col gap-3 text-sm">
                         <a href="#solucion" className="py-2" onClick={() => setOpen(false)}>
-                            Producto
+                            Cómo funciona
                         </a>
                         <a href="#funciones" className="py-2" onClick={() => setOpen(false)}>
                             Funciones
                         </a>
+                        <a href="#por-que" className="py-2" onClick={() => setOpen(false)}>
+                            Por qué
+                        </a>
                         <a href="#testimonios" className="py-2" onClick={() => setOpen(false)}>
                             Testimonios
-                        </a>
-                        <a href="#construido" className="py-2" onClick={() => setOpen(false)}>
-                            Nosotros
                         </a>
                         <a href={MAILTO} className="py-2" onClick={() => setOpen(false)}>
                             Contactanos
@@ -255,12 +259,11 @@ function Hero() {
                             Que tu equipo cierre.
                         </h1>
                         <p
-                            className="mt-6 max-w-xl lg:mx-auto text-white/80 text-lg md:text-xl leading-relaxed animate-blur-fade-up"
+                            className="mt-6 max-w-xl lg:mx-auto text-white/90 text-lg md:text-xl leading-relaxed animate-blur-fade-up"
                             style={{ animationDelay: '600ms' }}
                         >
-                            Te instalamos un sistema completo: anuncios en Meta apuntados a tu
-                            comprador ideal, IA que filtra leads 24/7 y un CRM nativo donde tu
-                            equipo solo cierra. Sin portales. Sin curiosos. Sin leads basura.
+                            Meta Ads + IA que califica 24/7 + CRM nativo.
+                            Sin portales, sin curiosos.
                         </p>
                         <div
                             className="mt-8 flex flex-wrap items-center gap-3 lg:justify-center animate-blur-fade-up"
@@ -303,11 +306,9 @@ function Problema() {
                     <div className="eyebrow mb-8">El problema</div>
                     <p className="editorial-p max-w-4xl">
                         Pagás <span style={{ color: 'var(--brand-600)' }}>portales</span> que
-                        venden tus contactos a la competencia. Tus agentes pierden el{' '}
-                        <span style={{ color: 'var(--brand-600)' }}>70%</span> del día con
-                        curiosos, consultas sin presupuesto y formularios que nunca van a cerrar.
-                        Y los compradores reales — los pocos que sí están listos — se van con
-                        quien los atiende primero.
+                        revenden tus contactos. Tus agentes pierden el{' '}
+                        <span style={{ color: 'var(--brand-600)' }}>70%</span> del día con curiosos.
+                        Y los compradores reales se van con quien los atiende primero.
                     </p>
                 </div>
             </div>
@@ -322,18 +323,18 @@ function Problema() {
 const STEPS = [
     {
         num: '01',
-        title: 'Captamos al comprador real con Meta Ads',
-        body: 'Diseñamos creativos y audiencias por barrio, ticket y perfil. Apuntamos cada propiedad al comprador exacto que la busca en Facebook e Instagram — sin pagar portales que reciclan tus contactos.',
+        title: 'Captamos al comprador real',
+        body: 'Creativos y audiencias por barrio, ticket y perfil. Cada propiedad apunta al comprador exacto que la busca.',
     },
     {
         num: '02',
-        title: 'La IA califica antes de que tu equipo conteste',
-        body: 'Cada lead pasa primero por la IA: detecta intención, presupuesto y timing. Descarta automáticamente a quien no tiene capacidad real de compra, y solo deriva al agente los leads listos para visitar.',
+        title: 'La IA califica 24/7',
+        body: 'Detecta intención, presupuesto y timing. Descarta curiosos y solo deriva leads listos para visitar.',
     },
     {
         num: '03',
-        title: 'Tu equipo cierra. Vos ves los números.',
-        body: 'Los agentes ven leads pre-calificados con score y propiedad de interés. Vos ves qué creativo trae más cierres, qué audiencia convierte y cuánto cuesta cada venta — todo en tiempo real.',
+        title: 'Tu equipo cierra',
+        body: 'Agentes ven leads con score. Vos ves qué creativo cierra y cuánto cuesta cada venta.',
     },
 ];
 
@@ -538,48 +539,48 @@ function Stats() {
 const FEATURES = [
     {
         icon: Palette,
-        t: 'Creativos de Meta Ads para inmobiliarias y desarrolladoras',
-        d: 'Anuncios pensados para vender propiedades y unidades en pozo, no plantillas genéricas.',
+        t: 'Creativos para vender propiedades',
+        d: 'Anuncios pensados para inmobiliarias, no plantillas genéricas.',
     },
     {
         icon: Users,
-        t: 'Audiencias por barrio, ticket y perfil',
-        d: 'Apuntamos cada propiedad al comprador exacto que la busca.',
+        t: 'Audiencias por barrio y ticket',
+        d: 'Cada propiedad apunta al comprador exacto.',
     },
     {
         icon: Webhook,
-        t: 'Webhook nativo Meta Lead Ads',
-        d: 'Cada lead aparece en tu pipeline en menos de 5 segundos.',
+        t: 'Leads en 5 segundos',
+        d: 'Webhook nativo Meta Lead Ads → directo al pipeline.',
     },
     {
         icon: MessageSquare,
-        t: 'WhatsApp Cloud API multi-cuenta',
-        d: 'Conectá todos tus números oficiales en una bandeja única.',
+        t: 'WhatsApp multi-cuenta',
+        d: 'Todos tus números oficiales en una bandeja única.',
     },
     {
         icon: Sparkles,
-        t: 'IA de calificación con score y contexto',
-        d: 'Cada lead llega con score 0–100 y resumen de la conversación.',
+        t: 'IA con score 0-100',
+        d: 'Cada lead llega calificado y con resumen de la conversación.',
     },
     {
         icon: Route,
-        t: 'Distribución automática a agentes',
-        d: 'Round-robin por zona o cartera, sin pelearse por leads.',
+        t: 'Distribución automática',
+        d: 'Round-robin por zona o cartera, sin peleas por leads.',
     },
     {
         icon: Kanban,
-        t: 'Pipeline de 9 etapas para venta inmobiliaria',
-        d: 'De primer contacto a escritura, sin forzar etapas genéricas.',
+        t: 'Pipeline inmobiliario nativo',
+        d: '9 etapas reales, de primer contacto a escritura.',
     },
     {
         icon: Target,
-        t: 'Atribución ad-to-property completa',
-        d: 'Sabé qué creativo, qué campaña y qué propiedad cerraron.',
+        t: 'Atribución ad-to-property',
+        d: 'Qué creativo, qué campaña y qué propiedad cerraron.',
     },
     {
         icon: Home,
         t: 'Portal del propietario',
-        d: 'Tu cliente ve avances de venta sin tener que llamarte.',
+        d: 'Tu cliente ve avances sin tener que llamarte.',
     },
 ];
 
@@ -625,6 +626,91 @@ function Funciones() {
 }
 
 /* ─────────────────────────────────────────────
+   POR QUÉ GROWTHBRICK — 4 pilares diferenciales
+   ───────────────────────────────────────────── */
+
+const PILLARS = [
+    {
+        icon: Ban,
+        t: 'Cero portales',
+        d: 'Eliminás el costo fijo más doloroso. Tus leads, no los de Zonaprop.',
+    },
+    {
+        icon: Lock,
+        t: 'Leads tuyos',
+        d: 'Nadie revende tus contactos. La competencia no los toca.',
+    },
+    {
+        icon: MapPin,
+        t: 'Hecho para Argentina',
+        d: 'Pozo, exclusivas, alquileres, comisiones. Como vendés acá.',
+    },
+    {
+        icon: Zap,
+        t: 'Resultado en 7 días',
+        d: 'Primeras visitas con intención real. Sin meses de setup.',
+    },
+];
+
+function PorQue() {
+    return (
+        <section
+            data-screen-label="06 Por qué"
+            id="por-que"
+            className="section-pad"
+            style={{ background: 'var(--bg-alt)' }}
+        >
+            <div className="container-x">
+                <div className="reveal max-w-4xl">
+                    <div className="eyebrow mb-6">Por qué GrowthBrick</div>
+                    <h2 className="section-title">
+                        Lo que no vas a encontrar
+                        <br />
+                        en ningún otro CRM.
+                    </h2>
+                </div>
+
+                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
+                    {PILLARS.map((p, i) => (
+                        <div
+                            key={p.t}
+                            className="reveal"
+                            style={{ animationDelay: `${i * 80}ms` }}
+                        >
+                            <div
+                                className="inline-flex items-center justify-center rounded-full"
+                                style={{
+                                    width: 56,
+                                    height: 56,
+                                    background: 'var(--brand-50)',
+                                    border: '1px solid var(--brand-200)',
+                                    color: 'var(--brand-700)',
+                                }}
+                            >
+                                <p.icon size={26} strokeWidth={1.6} />
+                            </div>
+                            <h3
+                                className="mt-6 font-display text-2xl"
+                                style={{
+                                    fontWeight: 500,
+                                    letterSpacing: '-0.02em',
+                                    lineHeight: 1.15,
+                                }}
+                            >
+                                {p.t}
+                            </h3>
+                            <p className="mt-3 text-[var(--ink-muted)] text-[1.0625rem] lg:text-base leading-relaxed">
+                                {p.d}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ─────────────────────────────────────────────
    CONSTRUIDO DESDE ADENTRO
    ───────────────────────────────────────────── */
 
@@ -645,11 +731,9 @@ function Construido() {
                         <span aria-hidden="true" style={{ color: 'var(--brand-600)' }}>
                             “
                         </span>
-                        GrowthBrick no es un CRM genérico con estética inmobiliaria. Fue diseñado
-                        desde cero para el negocio argentino: corretaje, desarrollos, alquileres y
-                        ventas. Cada pipeline, cada campo y cada métrica responde a cómo opera
-                        realmente una inmobiliaria o desarrolladora. La diferencia es simple:
-                        otros CRM vienen del SaaS. GrowthBrick viene del negocio inmobiliario.
+                        Otros CRM vienen del SaaS. GrowthBrick viene del negocio
+                        inmobiliario: pozo, exclusivas, alquileres y comisiones.
+                        Diseñado desde cero para cómo se vende en Argentina.
                         <span aria-hidden="true" style={{ color: 'var(--brand-600)' }}>
                             ”
                         </span>
@@ -769,9 +853,8 @@ function CTAFinal() {
                         por ahora.
                     </h2>
                     <p className="mt-6 text-[var(--ink-muted)] text-lg md:text-xl leading-relaxed">
-                        Trabajamos con un número limitado de inmobiliarias y desarrolladoras
-                        para garantizar resultados. Próximamente abrimos más cupos — mientras
-                        tanto, podés recorrer cómo funciona el sistema.
+                        Cupo limitado para garantizar resultados. Mirá cómo funciona
+                        mientras abrimos más lugares.
                     </p>
                     <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
                         <span
@@ -952,6 +1035,7 @@ export default function Page() {
                 <Solucion />
                 <Stats />
                 <Funciones />
+                <PorQue />
                 <Construido />
                 <Testimonios />
                 <CTAFinal />

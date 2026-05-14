@@ -518,22 +518,23 @@
         transition: background 300ms ease, border-color 300ms ease, color 300ms ease;
     }
 
-    /* Hero video */
+    /* Hero video — bajado de luminosidad para que el texto sea el protagonista */
     .hero-video {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        filter: brightness(0.45) saturate(0.85);
     }
 
-    /* Hero overlay — improves text legibility over video */
+    /* Hero overlay — más opaco para que el texto se lea sin esfuerzo */
     .hero-overlay {
         position: absolute;
         inset: 0;
         background:
-            linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.20) 35%, rgba(10, 10, 10, 0.85) 100%),
-            radial-gradient(60% 50% at 30% 80%, rgba(4, 120, 87, 0.18), transparent 70%);
+            linear-gradient(180deg, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.55) 35%, rgba(10, 10, 10, 0.95) 100%),
+            radial-gradient(60% 50% at 30% 80%, rgba(4, 120, 87, 0.28), transparent 70%);
         pointer-events: none;
     }
 
