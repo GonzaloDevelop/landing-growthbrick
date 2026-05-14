@@ -103,14 +103,13 @@ function Nav() {
                     </nav>
 
                     <div className="flex items-center gap-2">
-                        <span
-                            aria-disabled="true"
-                            className="nav-inactive px-4 py-2 text-sm animate-blur-fade-up inline-flex items-center gap-2"
+                        <a
+                            href={MAILTO}
+                            className="hidden md:inline-flex liquid-glass rounded-lg px-5 py-2 text-sm font-semibold items-center gap-2 animate-blur-fade-up"
                             style={{ animationDelay: '320ms' }}
                         >
-                            <span className="pulse-dot" />
-                            Próximamente
-                        </span>
+                            Sumate a la lista
+                        </a>
                         <button
                             onClick={() => setOpen((v) => !v)}
                             className="nav-burger lg:hidden ml-1 p-2"
@@ -247,7 +246,7 @@ function Hero() {
                             style={{ animationDelay: '200ms' }}
                         >
                             <span className="pulse-dot" />
-                            Cupos completos · Próximamente abrimos más
+                            Cupo limitado · Sumate a la lista de espera
                         </div>
 
                         <h1
@@ -269,13 +268,13 @@ function Hero() {
                             className="mt-8 flex flex-wrap items-center gap-3 lg:justify-center animate-blur-fade-up"
                             style={{ animationDelay: '800ms' }}
                         >
-                            <span
-                                aria-disabled="true"
-                                className="btn-inactive-dark px-8 py-3 inline-flex items-center gap-2.5 text-sm"
+                            <a
+                                href={MAILTO}
+                                className="rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 bg-white text-[var(--ink)] hover:bg-white/90 transition-colors"
                             >
-                                <span className="pulse-dot" />
-                                Próximamente abrimos más cupos
-                            </span>
+                                Sumate a la lista de espera
+                                <ArrowRight size={16} />
+                            </a>
                             <a
                                 href="#solucion"
                                 className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
@@ -846,24 +845,25 @@ function CTAFinal() {
         <section className="section-pad bg-[var(--bg-light)]">
             <div className="container-x">
                 <div className="reveal text-center max-w-2xl mx-auto">
-                    <div className="eyebrow mb-6">Próximamente</div>
+                    <div className="eyebrow mb-6">Cupo limitado</div>
                     <h2 className="section-title">
-                        Estamos completos
+                        Sumate a la lista
                         <br />
-                        por ahora.
+                        de espera.
                     </h2>
                     <p className="mt-6 text-[var(--ink-muted)] text-lg md:text-xl leading-relaxed">
-                        Cupo limitado para garantizar resultados. Mirá cómo funciona
-                        mientras abrimos más lugares.
+                        Trabajamos con un número limitado de inmobiliarias para
+                        garantizar resultados. Avisamos en orden de llegada.
                     </p>
                     <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
-                        <span
-                            aria-disabled="true"
-                            className="btn-inactive px-8 py-3 inline-flex items-center gap-2.5 text-sm"
+                        <a
+                            href={MAILTO}
+                            className="px-8 py-3 inline-flex items-center gap-2.5 text-sm font-semibold rounded-lg text-white transition-colors"
+                            style={{ background: 'var(--brand-700)' }}
                         >
-                            <span className="pulse-dot" />
-                            Próximamente abrimos más cupos
-                        </span>
+                            Quiero estar en la lista
+                            <ArrowRight size={16} />
+                        </a>
                         <a
                             href="#funciones"
                             className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-lg border border-[var(--border-soft)] hover:border-[var(--ink)] transition-colors"
