@@ -100,6 +100,18 @@ function Nav() {
                     </nav>
 
                     <div className="flex items-center gap-2">
+                        <a
+                            href="https://clientes.growthbrick.tech/aplicar"
+                            className="hidden lg:inline-flex rounded-full px-5 py-2 text-sm font-semibold transition-all hover:scale-[1.03] animate-blur-fade-up"
+                            style={{
+                                background: 'var(--brand-600)',
+                                color: '#fff',
+                                animationDelay: '360ms',
+                                boxShadow: '0 4px 16px rgba(5, 150, 105, 0.25)',
+                            }}
+                        >
+                            Aplicar
+                        </a>
                         <button
                             onClick={() => setOpen((v) => !v)}
                             className="nav-burger lg:hidden ml-1 p-2"
@@ -130,6 +142,17 @@ function Nav() {
                         </a>
                         <a href="#testimonios" className="py-2" onClick={() => setOpen(false)}>
                             Testimonios
+                        </a>
+                        <a
+                            href="https://clientes.growthbrick.tech/aplicar"
+                            className="mt-2 inline-flex justify-center rounded-lg px-5 py-3 text-sm font-semibold"
+                            style={{
+                                background: 'var(--brand-600)',
+                                color: '#fff',
+                            }}
+                            onClick={() => setOpen(false)}
+                        >
+                            Aplicar ahora
                         </a>
                     </div>
                 </div>
@@ -233,7 +256,7 @@ function Hero() {
                             style={{ animationDelay: '200ms' }}
                         >
                             <span className="pulse-dot" />
-                            Próximamente
+                            Aplicaciones abiertas — cupos limitados
                         </div>
 
                         <h1
@@ -248,19 +271,30 @@ function Hero() {
                             className="mt-6 max-w-xl lg:mx-auto text-white/90 text-lg md:text-xl leading-relaxed animate-blur-fade-up"
                             style={{ animationDelay: '600ms' }}
                         >
-                            Meta Ads + IA que califica 24/7 + CRM nativo.
-                            Sin portales, sin curiosos.
+                            Servicio personalizado de Meta Ads + IA + CRM
+                            para inmobiliarias. Trabajamos con vos, no te vendemos software.
                         </p>
                         <div
                             className="mt-8 flex flex-wrap items-center gap-3 lg:justify-center animate-blur-fade-up"
                             style={{ animationDelay: '800ms' }}
                         >
                             <a
+                                href="https://clientes.growthbrick.tech/aplicar"
+                                className="rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 transition-all hover:scale-[1.03]"
+                                style={{
+                                    background: 'var(--brand-600)',
+                                    color: '#fff',
+                                    boxShadow: '0 8px 32px rgba(5, 150, 105, 0.35)',
+                                }}
+                            >
+                                Aplicar ahora
+                                <Play size={14} />
+                            </a>
+                            <a
                                 href="#solucion"
                                 className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
                             >
                                 Ver cómo funciona
-                                <Play size={14} />
                             </a>
                         </div>
                     </div>
@@ -302,18 +336,18 @@ function Problema() {
 const STEPS = [
     {
         num: '01',
-        title: 'Captamos al comprador real',
-        body: 'Creativos y audiencias por barrio, ticket y perfil. Cada propiedad apunta al comprador exacto que la busca.',
+        title: 'Te armamos las campañas',
+        body: 'Diseñamos creativos y audiencias por barrio, ticket y perfil de comprador. No plantillas — todo hecho a medida de tu cartera.',
     },
     {
         num: '02',
         title: 'La IA califica 24/7',
-        body: 'Detecta intención, presupuesto y timing. Descarta curiosos y solo deriva leads listos para visitar.',
+        body: 'Detecta intención, presupuesto y timing. Descarta curiosos y solo te deriva leads listos para visitar.',
     },
     {
         num: '03',
-        title: 'Tu equipo cierra',
-        body: 'Agentes ven leads con score. Vos ves qué creativo cierra y cuánto cuesta cada venta.',
+        title: 'Vos y tu equipo cierran',
+        body: 'Agentes ven leads con score en el CRM. Vos ves qué creativo cierra, cuánto cuesta cada venta y dónde invertir más.',
     },
 ];
 
@@ -572,12 +606,17 @@ function Funciones() {
         >
             <div className="container-x">
                 <div className="reveal max-w-4xl">
-                    <div className="eyebrow mb-6">Funciones</div>
+                    <div className="eyebrow mb-6">Qué incluye el servicio</div>
                     <h2 className="section-title">
                         Todo lo que tu equipo necesita.
                         <br />
                         Nada de lo que sobra.
                     </h2>
+                    <p className="mt-6 text-[var(--ink-muted)] text-lg lg:text-xl leading-relaxed max-w-2xl">
+                        El CRM lo armamos junto con tus campañas y queda
+                        configurado a tu medida. No tenés que aprenderlo —
+                        nosotros lo operamos.
+                    </p>
                 </div>
 
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-10">
@@ -825,16 +864,42 @@ function CTAFinal() {
         <section className="section-pad bg-[var(--bg-light)]">
             <div className="container-x">
                 <div className="reveal text-center max-w-2xl mx-auto">
+                    <div
+                        className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold mb-6"
+                        style={{
+                            background: 'var(--brand-50)',
+                            color: 'var(--brand-700)',
+                            border: '1px solid var(--brand-200)',
+                        }}
+                    >
+                        <span
+                            className="inline-block w-1.5 h-1.5 rounded-full"
+                            style={{ background: 'var(--brand-600)' }}
+                        />
+                        Cupos limitados — aplicaciones abiertas
+                    </div>
                     <h2 className="section-title">
-                        Estamos completos
+                        ¿Listo para escalar
                         <br />
-                        por ahora.
+                        tu inmobiliaria?
                     </h2>
                     <p className="mt-6 text-[var(--ink-muted)] text-lg md:text-xl leading-relaxed">
                         Trabajamos con un número limitado de inmobiliarias para
-                        garantizar resultados.
+                        garantizar resultados. Si tu caso aplica, agendamos una
+                        llamada de descubrimiento de 30 minutos.
                     </p>
-                    <div className="mt-10 flex items-center justify-center">
+                    <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
+                        <a
+                            href="https://clientes.growthbrick.tech/aplicar"
+                            className="px-8 py-3.5 text-base font-semibold inline-flex items-center gap-2 rounded-lg transition-all hover:scale-[1.03]"
+                            style={{
+                                background: 'var(--brand-600)',
+                                color: '#fff',
+                                boxShadow: '0 8px 32px rgba(5, 150, 105, 0.25)',
+                            }}
+                        >
+                            Aplicar ahora
+                        </a>
                         <a
                             href="#funciones"
                             className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-lg border border-[var(--border-soft)] hover:border-[var(--ink)] transition-colors"
@@ -842,6 +907,10 @@ function CTAFinal() {
                             Ver qué incluye
                         </a>
                     </div>
+                    <p className="mt-6 text-xs text-[var(--ink-muted)]">
+                        Sin compromiso · 5 minutos · Si no aplica tu caso, te lo
+                        decimos directamente
+                    </p>
                 </div>
             </div>
         </section>
