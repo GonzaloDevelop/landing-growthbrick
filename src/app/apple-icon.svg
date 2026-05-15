@@ -1,0 +1,26 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brick-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="brick-dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="arrow-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+  <rect width="180" height="180" fill="#0A0A0A" rx="36" />
+  <g transform="translate(46, 46) scale(1.4)">
+    <rect x="6" y="46" width="16" height="12" rx="2" fill="url(#brick-dark)" />
+    <rect x="24" y="46" width="16" height="12" rx="2" fill="url(#brick-grad)" />
+    <rect x="42" y="46" width="16" height="12" rx="2" fill="url(#brick-dark)" />
+    <rect x="15" y="32" width="16" height="12" rx="2" fill="url(#brick-grad)" />
+    <rect x="33" y="32" width="16" height="12" rx="2" fill="url(#brick-dark)" />
+    <rect x="24" y="18" width="16" height="12" rx="2" fill="url(#brick-grad)" />
+    <path d="M32 2 L24 12 L29 12 L29 18 L35 18 L35 12 L40 12 Z" fill="url(#arrow-grad)" />
+  </g>
+</svg>
