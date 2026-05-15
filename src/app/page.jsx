@@ -102,15 +102,14 @@ function Nav() {
                     <div className="flex items-center gap-2">
                         <a
                             href="https://clientes.growthbrick.tech/aplicar"
-                            className="hidden lg:inline-flex rounded-full px-5 py-2 text-sm font-semibold transition-all hover:scale-[1.03] animate-blur-fade-up"
+                            className="hidden lg:inline-flex px-4 py-1.5 text-sm font-medium transition-colors animate-blur-fade-up"
                             style={{
-                                background: 'var(--brand-600)',
-                                color: '#fff',
+                                color: 'var(--brand-700)',
                                 animationDelay: '360ms',
-                                boxShadow: '0 4px 16px rgba(5, 150, 105, 0.25)',
+                                borderBottom: '1.5px solid var(--brand-700)',
                             }}
                         >
-                            Aplicar
+                            Aplicar →
                         </a>
                         <button
                             onClick={() => setOpen((v) => !v)}
@@ -145,14 +144,14 @@ function Nav() {
                         </a>
                         <a
                             href="https://clientes.growthbrick.tech/aplicar"
-                            className="mt-2 inline-flex justify-center rounded-lg px-5 py-3 text-sm font-semibold"
+                            className="mt-2 inline-flex justify-center px-5 py-3 text-sm font-semibold"
                             style={{
-                                background: 'var(--brand-600)',
+                                background: 'var(--ink)',
                                 color: '#fff',
                             }}
                             onClick={() => setOpen(false)}
                         >
-                            Aplicar ahora
+                            Aplicar ahora →
                         </a>
                     </div>
                 </div>
@@ -280,19 +279,19 @@ function Hero() {
                         >
                             <a
                                 href="https://clientes.growthbrick.tech/aplicar"
-                                className="rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 transition-all hover:scale-[1.03]"
+                                className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 transition-colors"
                                 style={{
-                                    background: 'var(--brand-600)',
-                                    color: '#fff',
-                                    boxShadow: '0 8px 32px rgba(5, 150, 105, 0.35)',
+                                    background: '#FAFAF7',
+                                    color: '#0A0A0A',
+                                    borderRadius: 0,
                                 }}
                             >
                                 Aplicar ahora
-                                <Play size={14} />
                             </a>
                             <a
                                 href="#solucion"
-                                className="liquid-glass rounded-lg px-7 py-3 text-sm font-semibold inline-flex items-center gap-2"
+                                className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 transition-colors text-white border border-white/30 hover:border-white/70"
+                                style={{ borderRadius: 0 }}
                             >
                                 Ver cómo funciona
                             </a>
@@ -888,21 +887,20 @@ function CTAFinal() {
                         garantizar resultados. Si tu caso aplica, agendamos una
                         llamada de descubrimiento de 30 minutos.
                     </p>
-                    <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
+                    <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
                         <a
                             href="https://clientes.growthbrick.tech/aplicar"
-                            className="px-8 py-3.5 text-base font-semibold inline-flex items-center gap-2 rounded-lg transition-all hover:scale-[1.03]"
+                            className="px-8 py-3 text-base font-semibold inline-flex items-center gap-2 transition-colors"
                             style={{
-                                background: 'var(--brand-600)',
+                                background: 'var(--ink)',
                                 color: '#fff',
-                                boxShadow: '0 8px 32px rgba(5, 150, 105, 0.25)',
                             }}
                         >
-                            Aplicar ahora
+                            Aplicar ahora →
                         </a>
                         <a
                             href="#funciones"
-                            className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 rounded-lg border border-[var(--border-soft)] hover:border-[var(--ink)] transition-colors"
+                            className="px-7 py-3 text-sm font-semibold inline-flex items-center gap-2 border border-[var(--border-soft)] hover:border-[var(--ink)] transition-colors"
                         >
                             Ver qué incluye
                         </a>
